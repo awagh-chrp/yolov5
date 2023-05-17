@@ -83,20 +83,27 @@ import mlflow
 
 
 # mlflow.set_tracking_uri ("http://127.0.0.1:5000")
+# tags = [
+#     "train/box_loss",
+#     "train/obj_loss",
+#     "train/cls_loss",
+#     "metrics/precision",
+#     "metrics/recall",
+#     "metrics/mAP_0.5",
+#     "metrics/mAP_0.5:0.95",
+#     "val/box_loss",
+#     "val/obj_loss",
+#     "val/cls_loss",
+#     "x/lr0",
+#     "x/lr1",
+#     "x/lr2",
+# ]
+
 tags = [
-    "train/box_loss",
-    "train/obj_loss",
-    "train/cls_loss",
     "metrics/precision",
-    "metrics/recall",
-    "metrics/mAP_0.5",
-    "metrics/mAP_0.5:0.95",
     "val/box_loss",
     "val/obj_loss",
     "val/cls_loss",
-    "x/lr0",
-    "x/lr1",
-    "x/lr2",
 ]
 
 
@@ -1015,11 +1022,16 @@ def main(opt, callbacks=Callbacks()):
             results = train(hyp.copy(), opt, device, callbacks)
             callbacks = Callbacks()
             # Write mutation results
+            # keys = (
+            #     "metrics/precision",
+            #     "metrics/recall",
+            #     "metrics/mAP_0.5",
+            #     "metrics/mAP_0.95",
+            #     "val/box_loss",
+            #     "val/obj_loss",
+            #     "val/cls_loss",
+            # )
             keys = (
-                "metrics/precision",
-                "metrics/recall",
-                "metrics/mAP_0.5",
-                "metrics/mAP_0.95",
                 "val/box_loss",
                 "val/obj_loss",
                 "val/cls_loss",
